@@ -96,8 +96,21 @@
 		D69FA1571C33908F00903433 /* Matrix Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				D69FA16B1C33928300903433 /* main.cc */,
+				D69FA1881C3392CA00903433 /* Syntax tree classes */,
+				D69FA1891C33930300903433 /* Parser */,
+				D69FA18A1C33932300903433 /* Core */,
+			);
+			path = "Matrix Calculator";
+			sourceTree = "<group>";
+		};
+		D69FA1881C3392CA00903433 /* Syntax tree classes */ = {
+			isa = PBXGroup;
+			children = (
+				D69FA16A1C33928300903433 /* syntax_element.h */,
+				D69FA1691C33928300903433 /* composite_syntax_element.h */,
 				D69FA15F1C33928300903433 /* composite_syntax_element.cc */,
-				D69FA1601C33928300903433 /* line_parser.h */,
+				D69FA16E1C33928300903433 /* function_syntax_element.h */,
 				D69FA1611C33928300903433 /* function_syntax_element.cc */,
 				D69FA1621C33928300903433 /* literal.h */,
 				D69FA1631C33928300903433 /* literal.cc */,
@@ -105,28 +118,63 @@
 				D69FA1651C33928300903433 /* operation.cc */,
 				D69FA1661C33928300903433 /* variable_name.h */,
 				D69FA1671C33928300903433 /* variable_name.cc */,
+				D69FA18D1C33938200903433 /* Visitor */,
+			);
+			name = "Syntax tree classes";
+			sourceTree = "<group>";
+		};
+		D69FA1891C33930300903433 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				D69FA1601C33928300903433 /* line_parser.h */,
 				D69FA1681C33928300903433 /* line_parser.cc */,
-				D69FA1691C33928300903433 /* composite_syntax_element.h */,
-				D69FA16A1C33928300903433 /* syntax_element.h */,
-				D69FA16B1C33928300903433 /* main.cc */,
-				D69FA16C1C33928300903433 /* math_matrix.cc */,
-				D69FA16D1C33928300903433 /* math_matrix.h */,
-				D69FA16E1C33928300903433 /* function_syntax_element.h */,
-				D69FA16F1C33928300903433 /* variable_delegate_interface.h */,
-				D69FA1701C33928300903433 /* visitor.h */,
-				D69FA1711C33928300903433 /* visitor.cc */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		D69FA18A1C33932300903433 /* Core */ = {
+			isa = PBXGroup;
+			children = (
 				D69FA1721C33928300903433 /* function_delegate_interface.h */,
+				D69FA16F1C33928300903433 /* variable_delegate_interface.h */,
+				D69FA1771C33928300903433 /* native_function_definitions.h */,
 				D69FA1731C33928300903433 /* session.h */,
 				D69FA1741C33928300903433 /* session.cc */,
+				D69FA18C1C33936100903433 /* Function elements */,
+				D69FA18B1C33933000903433 /* Matrix elements */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		D69FA18B1C33933000903433 /* Matrix elements */ = {
+			isa = PBXGroup;
+			children = (
+				D69FA17B1C33928300903433 /* matrix.h */,
+				D69FA16D1C33928300903433 /* math_matrix.h */,
+				D69FA16C1C33928300903433 /* math_matrix.cc */,
+			);
+			name = "Matrix elements";
+			sourceTree = "<group>";
+		};
+		D69FA18C1C33936100903433 /* Function elements */ = {
+			isa = PBXGroup;
+			children = (
 				D69FA1751C33928300903433 /* function_interface.h */,
 				D69FA1761C33928300903433 /* native_function.h */,
-				D69FA1771C33928300903433 /* native_function_definitions.h */,
 				D69FA1781C33928300903433 /* native_function.cc */,
 				D69FA1791C33928300903433 /* non_native_function.h */,
 				D69FA17A1C33928300903433 /* non_native_function.cc */,
-				D69FA17B1C33928300903433 /* matrix.h */,
 			);
-			path = "Matrix Calculator";
+			name = "Function elements";
+			sourceTree = "<group>";
+		};
+		D69FA18D1C33938200903433 /* Visitor */ = {
+			isa = PBXGroup;
+			children = (
+				D69FA1701C33928300903433 /* visitor.h */,
+				D69FA1711C33928300903433 /* visitor.cc */,
+			);
+			name = Visitor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
