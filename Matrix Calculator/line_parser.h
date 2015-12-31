@@ -38,16 +38,16 @@ public:
     LineParser(std::string);
     
     // Main parsing function
-    SyntaxElementPtr Parse();
+    std::unique_ptr<SyntaxElement> Parse();
     
 private:
     std::string line_;
     std::string::const_iterator line_iter_;
     std::vector<Token> tokens_;
     std::vector<Token>::const_iterator token_iter_;
-    std::stack<SyntaxElementPtr> values_;
-    std::stack<OperationPtr> operations_;
-    SyntaxElementPtr tree_;
+    std::stack<std::unique_ptr<SyntaxElement>> values_;
+    std::stack<std::unique_ptr<Operation>> operations_;
+    std::unique_ptr<SyntaxElement> tree_;
     
     void Tokenize();
     void MakeTree();

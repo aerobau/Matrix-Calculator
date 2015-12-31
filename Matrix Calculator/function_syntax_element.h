@@ -16,8 +16,6 @@ class FunctionSyntaxElement : public CompositeSyntaxElement {
 public:
     explicit FunctionSyntaxElement(std::string);
     
-    void Add(SyntaxElementPtr) override;
-    
     void Accept(Visitor&) const override;
     
     std::string identifier() const;

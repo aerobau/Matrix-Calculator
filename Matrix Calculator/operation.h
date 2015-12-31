@@ -15,8 +15,8 @@
 class Operation : public SyntaxElement {
 public:
     Operation(std::string);
-    void set_lhs(SyntaxElementPtr);
-    void set_rhs(SyntaxElementPtr);
+    void set_lhs(std::unique_ptr<SyntaxElement>);
+    void set_rhs(std::unique_ptr<SyntaxElement>);
     const SyntaxElement& lhs() const;
     const SyntaxElement& rhs() const;
     void Accept(Visitor&) const override;
@@ -24,10 +24,8 @@ public:
     
 private:
     std::string type_;
-    SyntaxElementPtr lhs_;
-    SyntaxElementPtr rhs_;
+    std::unique_ptr<SyntaxElement> lhs_;
+    std::unique_ptr<SyntaxElement> rhs_;
 };
-
-typedef std::unique_ptr<Operation> OperationPtr;
 
 #endif // OPERATION_H_

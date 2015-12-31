@@ -19,6 +19,7 @@
 		D69FA1851C33928300903433 /* session.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA1741C33928300903433 /* session.cc */; settings = {ASSET_TAGS = (); }; };
 		D69FA1861C33928300903433 /* native_function.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA1781C33928300903433 /* native_function.cc */; settings = {ASSET_TAGS = (); }; };
 		D69FA1871C33928300903433 /* non_native_function.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA17A1C33928300903433 /* non_native_function.cc */; settings = {ASSET_TAGS = (); }; };
+		D69FA1901C34CAD300903433 /* variable_list.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA18E1C34CAD300903433 /* variable_list.cc */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,8 @@
 		D69FA1791C33928300903433 /* non_native_function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = non_native_function.h; sourceTree = "<group>"; };
 		D69FA17A1C33928300903433 /* non_native_function.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = non_native_function.cc; sourceTree = "<group>"; };
 		D69FA17B1C33928300903433 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		D69FA18E1C34CAD300903433 /* variable_list.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = variable_list.cc; sourceTree = "<group>"; };
+		D69FA18F1C34CAD300903433 /* variable_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = variable_list.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				D69FA1651C33928300903433 /* operation.cc */,
 				D69FA1661C33928300903433 /* variable_name.h */,
 				D69FA1671C33928300903433 /* variable_name.cc */,
+				D69FA18F1C34CAD300903433 /* variable_list.h */,
+				D69FA18E1C34CAD300903433 /* variable_list.cc */,
 				D69FA18D1C33938200903433 /* Visitor */,
 			);
 			name = "Syntax tree classes";
@@ -234,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D69FA1821C33928300903433 /* main.cc in Sources */,
+				D69FA1901C34CAD300903433 /* variable_list.cc in Sources */,
 				D69FA1871C33928300903433 /* non_native_function.cc in Sources */,
 				D69FA1861C33928300903433 /* native_function.cc in Sources */,
 				D69FA1841C33928300903433 /* visitor.cc in Sources */,

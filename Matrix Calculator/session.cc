@@ -80,7 +80,7 @@ void Session::Start() {
             // NOTE: The visitor holds a SessionDelegateInterface so that it can
             // edit the variables and functions in the session
             LineParser parser(line_in);
-            SyntaxElementPtr tree = parser.Parse();
+            std::unique_ptr<SyntaxElement> tree = parser.Parse();
             Visitor v(*this, *this);
             tree->Accept(v);
         }

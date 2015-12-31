@@ -17,7 +17,7 @@ Token::Token(std::string lexume, TokenType type) : lexume(lexume), type(type) {}
 
 LineParser::LineParser(std::string line) : line_(line) {}
 
-SyntaxElementPtr LineParser::Parse() {
+std::unique_ptr<SyntaxElement> LineParser::Parse() {
     Tokenize();
     MakeTree();
     return std::move(tree_);
@@ -88,7 +88,7 @@ void LineParser::MakeTree() {
         ReadToken();
     }
     while (!operations_.empty()) {
-        OperationPtr op = std::move(operations_.top());
+        std::unique_ptr<Operation> op = std::move(operations_.top());
         operations_.pop();
         if (values_.size() < 2) {
             throw std::logic_error("Too few values");
@@ -132,7 +132,7 @@ void LineParser::ReadToken() {
     switch (token_iter_->type) {
         case LITERAL_MATRIX: {
             MathMatrix value(createMatrixFromString(token_iter_->lexume));
-            values_.push(SyntaxElementPtr(new Literal(value)));
+            values_.push(std::unique_ptr<SyntaxElement>(new Literal(value)));
             break;
         }
             
@@ -140,13 +140,15 @@ void LineParser::ReadToken() {
             double value;
             value = std::stod(token_iter_->lexume);
             MathMatrix matrix(extd::matrix<double>({{value}}));
-            values_.push(SyntaxElementPtr(new Literal(matrix)));
+            values_.push(std::unique_ptr<SyntaxElement>(new Literal(matrix)));
             break;
         }
             
-        case OPERATION:
-            operations_.push(OperationPtr(new Operation(token_iter_->lexume)));
+        case OPERATION:{
+            Operation* operation = new Operation(token_iter_->lexume);
+            operations_.push(std::unique_ptr<Operation>(operation));
             break;
+        }
             
         case OPEN_PARENTHESIS: {
             auto start_iter = ++token_iter_;
@@ -155,7 +157,7 @@ void LineParser::ReadToken() {
             }
             std::vector<Token> old_tokens = tokens_;
             std::vector<Token>::const_iterator old_token_iter = token_iter_;
-            SyntaxElementPtr held_tree = std::move(tree_);
+            std::unique_ptr<SyntaxElement> held_tree = std::move(tree_);
             tokens_ = std::vector<Token>(start_iter, old_token_iter);
             MakeTree();
             values_.push(std::move(tree_));
@@ -177,7 +179,7 @@ void LineParser::ReadToken() {
                         }
                         std::vector<Token> old_tokens = tokens_;
                         std::vector<Token>::const_iterator old_token_iter = token_iter_;
-                        SyntaxElementPtr held_tree = std::move(tree_);
+                        std::unique_ptr<SyntaxElement> held_tree = std::move(tree_);
                         tokens_ = std::vector<Token>(parameter_start + 1, token_iter_);
                         MakeTree();
                         element->Add(std::move(tree_));
@@ -186,14 +188,14 @@ void LineParser::ReadToken() {
                         tree_ = std::move(held_tree);
                         ++token_iter_;
                     }
-                    values_.push(SyntaxElementPtr(element));
+                    values_.push(std::unique_ptr<SyntaxElement>(element));
                 } else {
                     --token_iter_;
-                    values_.push(SyntaxElementPtr(new VariableName(identifier_name)));
+                    values_.push(std::unique_ptr<SyntaxElement>(new VariableName(identifier_name)));
                 }
             } else {
                 --token_iter_;
-                values_.push(SyntaxElementPtr(new VariableName(identifier_name)));
+                values_.push(std::unique_ptr<SyntaxElement>(new VariableName(identifier_name)));
             }
             break;
         }

@@ -11,11 +11,11 @@
 
 Operation::Operation(std::string type) : type_(type) {}
 
-void Operation::set_lhs(SyntaxElementPtr element) {
+void Operation::set_lhs(std::unique_ptr<SyntaxElement> element) {
     lhs_ = std::move(element);
 }
 
-void Operation::set_rhs(SyntaxElementPtr element) {
+void Operation::set_rhs(std::unique_ptr<SyntaxElement> element) {
     rhs_ = std::move(element);
 }
 

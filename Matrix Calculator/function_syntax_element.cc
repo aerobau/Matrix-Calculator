@@ -9,11 +9,8 @@
 #include "function_syntax_element.h"
 #include "visitor.h"
 
-FunctionSyntaxElement::FunctionSyntaxElement(std::string identifier) : identifier_(identifier) {}
-
-void FunctionSyntaxElement::Add(SyntaxElementPtr element) {
-    CompositeSyntaxElement::Add(std::move(element));
-}
+FunctionSyntaxElement::FunctionSyntaxElement(std::string identifier)
+        : identifier_(identifier) {}
 
 void FunctionSyntaxElement::Accept(Visitor& v) const {
     v.VisitFunctionSyntaxElement(*this);

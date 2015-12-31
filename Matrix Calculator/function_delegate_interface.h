@@ -9,6 +9,7 @@
 class FunctionInterface;
 
 class FunctionDelegateInterface {
+public:
     // Passes a std::string that is the function name that needs to be retrieved
     // and a MathMatrix by reference and sets that math matrix to the function
     // if it exists and returns true.  If it does not exist, returns false and
