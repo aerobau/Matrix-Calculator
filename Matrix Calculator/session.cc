@@ -9,9 +9,13 @@
 #include "session.h"
 #include "line_parser.h"
 #include "visitor.h"
+#include "native_function_definitions.h"
+#include "printer.h"
+
 
 // CONSTRUCTORS //
-Session::Session() : variables_(), functions_() {}
+Session::Session()
+        : variables_(), functions_(NativeDefinitions::CreateFunctions()) {}
 
 bool Session::GetVariable(std::string name, MathMatrix& value) const {
     auto location = variables_.find(name);
@@ -47,7 +51,7 @@ void Session::SetFunction(std::string name, const FunctionInterface& value) {
     functions_[name] = std::move(added);
 }
 
-void Session::Start() {
+void Session::Run() {
     // If the variables are not empty, go ahead and print out the current
     // variables at the start of the session to inform the user of what is
     // availible
@@ -81,7 +85,9 @@ void Session::Start() {
             // edit the variables and functions in the session
             LineParser parser(line_in);
             std::unique_ptr<SyntaxElement> tree = parser.Parse();
-            Visitor v(*this, *this);
+            std::unique_ptr<Printer> printer(new Printer(&std::cout));
+            Visitor v(*this, *this, *printer);
+            if (printer->valid()) printer->Print();
             tree->Accept(v);
         }
     }

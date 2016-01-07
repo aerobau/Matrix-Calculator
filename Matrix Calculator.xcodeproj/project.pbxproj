@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D63B3E961C3C00C500B1B3C5 /* printer.cc in Sources */ = {isa = PBXBuildFile; fileRef = D63B3E941C3C00C500B1B3C5 /* printer.cc */; settings = {ASSET_TAGS = (); }; };
 		D69FA17C1C33928300903433 /* composite_syntax_element.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA15F1C33928300903433 /* composite_syntax_element.cc */; settings = {ASSET_TAGS = (); }; };
 		D69FA17D1C33928300903433 /* function_syntax_element.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA1611C33928300903433 /* function_syntax_element.cc */; settings = {ASSET_TAGS = (); }; };
 		D69FA17E1C33928300903433 /* literal.cc in Sources */ = {isa = PBXBuildFile; fileRef = D69FA1631C33928300903433 /* literal.cc */; settings = {ASSET_TAGS = (); }; };
@@ -35,6 +36,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D62A22451C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.58.59 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2016-01-06 at 1.58.59 PM.png"; path = "Matrix Calculator/Screen Shot 2016-01-06 at 1.58.59 PM.png"; sourceTree = "<group>"; };
+		D62A22461C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.18 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2016-01-06 at 1.59.18 PM.png"; path = "Matrix Calculator/Screen Shot 2016-01-06 at 1.59.18 PM.png"; sourceTree = "<group>"; };
+		D62A22471C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.36 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2016-01-06 at 1.59.36 PM.png"; path = "Matrix Calculator/Screen Shot 2016-01-06 at 1.59.36 PM.png"; sourceTree = "<group>"; };
+		D62A22481C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.47 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2016-01-06 at 1.59.47 PM.png"; path = "Matrix Calculator/Screen Shot 2016-01-06 at 1.59.47 PM.png"; sourceTree = "<group>"; };
+		D63B3E941C3C00C500B1B3C5 /* printer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printer.cc; sourceTree = "<group>"; };
+		D63B3E951C3C00C500B1B3C5 /* printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printer.h; sourceTree = "<group>"; };
 		D69FA1551C33908F00903433 /* Matrix Calculator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Matrix Calculator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69FA15F1C33928300903433 /* composite_syntax_element.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composite_syntax_element.cc; sourceTree = "<group>"; };
 		D69FA1601C33928300903433 /* line_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_parser.h; sourceTree = "<group>"; };
@@ -83,6 +90,10 @@
 		D69FA14C1C33908F00903433 = {
 			isa = PBXGroup;
 			children = (
+				D62A22451C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.58.59 PM.png */,
+				D62A22461C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.18 PM.png */,
+				D62A22471C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.36 PM.png */,
+				D62A22481C3D9C1A00AF4F32 /* Screen Shot 2016-01-06 at 1.59.47 PM.png */,
 				D69FA1571C33908F00903433 /* Matrix Calculator */,
 				D69FA1561C33908F00903433 /* Products */,
 			);
@@ -145,6 +156,8 @@
 				D69FA1771C33928300903433 /* native_function_definitions.h */,
 				D69FA1731C33928300903433 /* session.h */,
 				D69FA1741C33928300903433 /* session.cc */,
+				D63B3E941C3C00C500B1B3C5 /* printer.cc */,
+				D63B3E951C3C00C500B1B3C5 /* printer.h */,
 				D69FA18C1C33936100903433 /* Function elements */,
 				D69FA18B1C33933000903433 /* Matrix elements */,
 			);
@@ -238,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63B3E961C3C00C500B1B3C5 /* printer.cc in Sources */,
 				D69FA1821C33928300903433 /* main.cc in Sources */,
 				D69FA1901C34CAD300903433 /* variable_list.cc in Sources */,
 				D69FA1871C33928300903433 /* non_native_function.cc in Sources */,
@@ -367,6 +381,7 @@
 				D69FA15E1C33908F00903433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,10 +1,7 @@
-//
-//  variable_name.cpp
+//  variable_name.cc
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/26/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #include "variable_name.h"
 #include "visitor.h"

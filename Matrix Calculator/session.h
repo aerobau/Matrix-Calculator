@@ -11,11 +11,8 @@
 
 #include "variable_delegate_interface.h"
 #include "function_delegate_interface.h"
-#include "math_matrix.h"
-#include "function_interface.h"
 #include "function_syntax_element.h"
 #include <iostream>
-
 #include <map>
 
 //  |CLASS|  Session  |CLASS|
@@ -41,7 +38,7 @@ public:
     // NOTE: This is a long runtime function.  It is basically the main function
     // of the session and contains all logic to handle user input and pass input
     // along to the parser.
-    void Start();
+    void Run();
     
 private:
     // Mappings of variables and functions to std::string names for O(n)

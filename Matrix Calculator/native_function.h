@@ -1,10 +1,7 @@
-//
-//  native_function.hpp
+//  native_function.h
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/29/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #ifndef NATIVE_FUNCTION_H_
 #define NATIVE_FUNCTION_H_

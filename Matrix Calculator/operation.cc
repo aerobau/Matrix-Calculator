@@ -1,10 +1,7 @@
-//
-//  operation.cpp
+//  operation.cc
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/25/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #include "operation.h"
 #include "visitor.h"

@@ -1,10 +1,7 @@
-//
-//  parser.cpp
+//  parser.cc
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/25/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #include "line_parser.h"
 #include "literal.h"
@@ -15,76 +12,86 @@
 
 Token::Token(std::string lexume, TokenType type) : lexume(lexume), type(type) {}
 
+
 LineParser::LineParser(std::string line) : line_(line) {}
 
 std::unique_ptr<SyntaxElement> LineParser::Parse() {
-    Tokenize();
-    MakeTree();
+    std::vector<Token> tokens = Tokenize();
+    return MakeTree(tokens);
     return std::move(tree_);
 }
 
-void LineParser::Tokenize() {
+std::vector<Token> LineParser::Tokenize() {
     std::string::const_iterator token_start = line_.begin();
-    line_iter_ = line_.begin();
-    while(line_iter_ != line_.end()) {
-        if (*line_iter_ == '*') {
-            ReadWord(token_start, line_iter_);
+    std::string::const_iterator line_iter = line_.begin();
+    while(line_iter != line_.end()) {
+        if (*line_iter == '*') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("*", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '/') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == '/') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("/", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '+') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == '+') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("+", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '-') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == '-') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("-", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '\\') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == '\\') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("\\", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '=') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == '=') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("=", OPERATION));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == ' ') {
-            ReadWord(token_start, line_iter_);
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == '(') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == ' ') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
+            token_start = ++line_iter;
+        } else if (*line_iter == '(') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token("(", OPEN_PARENTHESIS));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == ')') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == ')') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token(")", CLOSE_PARENTHESIS));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == ';') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == ';') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token(";", END_STATEMENT));
-            token_start = ++line_iter_;
-        } else if (*line_iter_ == ',') {
-            ReadWord(token_start, line_iter_);
+            token_start = ++line_iter;
+        } else if (*line_iter == ',') {
+            tokens_.push_back(ReadWord(token_start, line_iter));
             tokens_.push_back(Token(",", DELIMITER));
-        } else if (*line_iter_ == '[') {
-            while (*line_iter_ != ']' && line_iter_ != line_.end()) {
-                ++line_iter_;
+            token_start = ++line_iter;
+        } else if (*line_iter == '[') {
+            while (*line_iter != ']' && line_iter != line_.end()) {
+                ++line_iter;
             }
-            ++line_iter_;
-            ReadWord(token_start, line_iter_);
-            token_start = line_iter_;
+            
+            if (line_iter == line_.end()) {
+                // If the loop wasnt terminated from a matching closing bracket,
+                // throw an error.
+                throw std::logic_error("Missing closing bracket");
+            } else {
+                ++line_iter;
+            }
+            
+            tokens_.push_back(ReadWord(token_start, line_iter));
+            token_start = line_iter;
         } else {
-            ++line_iter_;
+            ++line_iter;
         }
     }
 }
 
-void LineParser::MakeTree() {
-    token_iter_ = tokens_.begin();
-    while (token_iter_ != tokens_.end()) {
+std::unique_ptr<SyntaxElement> LineParser::MakeTree(std::vector<Token> tokens) {
+    token_iter_ = tokens.begin();
+    while (token_iter_ != tokens.end()) {
         ReadToken();
     }
     while (!operations_.empty()) {
@@ -102,28 +109,29 @@ void LineParser::MakeTree() {
     tree_ = std::move(values_.top());
 }
 
-void LineParser::ReadWord(std::string::const_iterator begin,
+Token LineParser::ReadWord(std::string::const_iterator begin,
                            std::string::const_iterator end) {
     // Getting the substring from the iterators
     std::string word(begin, end);
     if (word.size() == 0) {
-        // Word is a null string, simply return
-        return;
+        return;  // Word is a null string, simply return
     } else if (*begin == '[') {
         if (*(end - 1) == ']') {
-            // Word is a literal matrix and has matching brackets, push back as a LITERAL token
-            tokens_.push_back(Token(word, LITERAL_MATRIX));
+            // Word is a literal matrix and has matching brackets, push back as
+            // a LITERAL token
+            return Token(word, LITERAL_MATRIX);
         } else {
-            // Word has opening brackets but not closing brackets, push back and mark INVALID
-            tokens_.push_back(Token(word, INVALID));
+            // Word has opening brackets but not closing brackets, push back and
+            // mark INVALID
+            return Token(word, INVALID);
         }
     } else {
         try {
             double value;
             value = std::stod(word);
-            tokens_.push_back(Token(word, LITERAL_DECIMAL));
+            return Token(word, LITERAL_DECIMAL);
         } catch (std::exception e) {
-            tokens_.push_back(Token(word, IDENTIFIER));
+            return Token(word, IDENTIFIER);
         }
     }
 }
@@ -144,7 +152,7 @@ void LineParser::ReadToken() {
             break;
         }
             
-        case OPERATION:{
+        case OPERATION: {
             Operation* operation = new Operation(token_iter_->lexume);
             operations_.push(std::unique_ptr<Operation>(operation));
             break;
@@ -199,6 +207,9 @@ void LineParser::ReadToken() {
             }
             break;
         }
+            
+        case END_STATEMENT:
+            break;
             
         default:
             throw std::logic_error("Token not valid");

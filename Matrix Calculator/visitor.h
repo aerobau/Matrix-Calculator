@@ -1,10 +1,7 @@
-//
 //  visitor.h
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/23/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #ifndef VISITOR_H_
 #define VISITOR_H_
@@ -17,6 +14,8 @@
 #include "variable_delegate_interface.h"
 #include "function_delegate_interface.h"
 
+class Printer;
+
 //  |CLASS|  Visitor  |CLASS|
 //
 //  Simple visitor class that defines all of the functions necessary to visit
@@ -25,7 +24,7 @@
 //  determine the result of the tree and perform its operations.
 class Visitor {
 public:
-    Visitor(VariableDelegateInterface&, FunctionDelegateInterface&);
+    Visitor(VariableDelegateInterface&, FunctionDelegateInterface&, Printer&);
     
     // Visits a given FunctionSyntaxElement in the tree.  This will perform the
     // given function by passing it's children as a vector of MathMatrix to the
@@ -71,6 +70,9 @@ private:
     // other outside source.
     VariableDelegateInterface& variable_delegate_;
     FunctionDelegateInterface& function_delegate_;
+    
+    // The printer that can be assigned to print errors, info, variables, etc.
+    Printer& printer_;
 };
 
 #endif // VISITOR_H_

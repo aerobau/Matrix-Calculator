@@ -1,10 +1,7 @@
-//
-//  composite_syntax_element.cpp
+//  composite_syntax_element.cc
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/26/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #include "composite_syntax_element.h"
 
@@ -12,7 +9,7 @@ void CompositeSyntaxElement::Add(std::unique_ptr<SyntaxElement> element) {
     children_.push_back(std::move(element));
 }
 
-std::size_t CompositeSyntaxElement::children_count() const {
+std::size_t CompositeSyntaxElement::ChildrenCount() const {
     return children_.size();
 }
 

@@ -21,7 +21,39 @@ const double& MathMatrix::operator()(int row, int column) const {
 }
 
 double MathMatrix::Determinant() const {
-    return 0.0; // TODO: implement determinant
+    if (!IsSquare()) {
+        throw std::logic_error("Cannot find determinant for non-square matrix");
+        return 0.0;
+    }
+    
+    if (ColumnSize() == 2 && RowSize() == 2) {
+        return matrix_(0,0) * matrix_(1,1) - matrix_(1,0) * matrix_(0,1);
+    } else {
+        double det = 0.0;
+        for (unsigned int col = 0; col < ColumnSize(); ++col) {
+            MathMatrix sub_matrix(ColumnSize() - 1, RowSize() - 1);
+            for (unsigned int sub_row = 1; sub_row < RowSize(); ++sub_row) {
+                for (unsigned int sub_col = 0; sub_col < ColumnSize();
+                     ++sub_col) {
+                    if (sub_col < col) {
+                        sub_matrix(sub_row - 1, sub_col) = matrix_(sub_row,
+                                                               sub_col);
+                    } else if(sub_col > col) {
+                        sub_matrix(sub_row - 1, sub_col - 1) = matrix_(sub_row,
+                                                                   sub_col);
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            if (col % 2 == 0) {
+                det += sub_matrix.Determinant();
+            } else {
+                det -= sub_matrix.Determinant();
+            }
+        }
+        return det;
+    }
 }
 
 MathMatrix MathMatrix::Eigenvalues() const {

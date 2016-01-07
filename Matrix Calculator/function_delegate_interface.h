@@ -6,8 +6,14 @@
 #ifndef FUNCTION_DELEGATE_INTERFACE_H_
 #define FUNCTION_DELEGATE_INTERFACE_H_
 
-class FunctionInterface;
+#include "function_interface.h"
 
+//  |CLASS|  FunctionDelegteInterface  |CLASS|
+//
+//  Interface that allows the getting and setting of functions by their given
+//  identifier.  This works with the FunctionInterface so that both native
+//  functions and user defined functions in terms of the scripting language can
+//  be retrieved and set.
 class FunctionDelegateInterface {
 public:
     // Passes a std::string that is the function name that needs to be retrieved

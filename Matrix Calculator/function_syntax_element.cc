@@ -1,10 +1,7 @@
-//
-//  function_syntax_element.cpp
+//  function_syntax_element.cc
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/23/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #include "function_syntax_element.h"
 #include "visitor.h"

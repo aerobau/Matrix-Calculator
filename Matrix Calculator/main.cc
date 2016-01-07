@@ -2,7 +2,6 @@
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/19/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
 
 #include <iostream>
 #include "session.h"
@@ -17,7 +16,7 @@ int main() {
         if (in == "L" || in == "l") {
             std::cout << "Loading not supported yet" << std::endl;
         } else if (in == "N" || in == "n") {
-            Session s; s.Start();
+            Session s; s.Run();
         } else if (in == "X" || in == "x") {
             done = true;
         } else {

@@ -9,6 +9,7 @@
 #include "non_native_function.h"
 #include "visitor.h"
 #include "line_parser.h"
+#include "printer.h"
 
 NonNativeFunction::NonNativeFunction(std::vector<std::string> inputs,
                                      std::vector<std::string> outputs,
@@ -45,7 +46,8 @@ Execute(const std::vector<MathMatrix> inputs) {
             **iter = *it;
         }
         
-        Visitor v(*this, function_delegate_);
+        std::unique_ptr<Printer> printer(new Printer(nullptr));
+        Visitor v(*this, function_delegate_, *printer);
         for (auto it = syntax_trees_.begin(); it != syntax_trees_.end(); ++it) {
             it->get()->Accept(v);
         }

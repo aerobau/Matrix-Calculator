@@ -1,10 +1,7 @@
-//
 //  composite_syntax_element.h
 //  Matrix Calculator
 //
 //  Created by Alexander Robau on 12/23/15.
-//  Copyright © 2015 Robau inc. All rights reserved.
-//
 
 #ifndef COMPOSITE_SYNTAX_ELEMENT_H_
 #define COMPOSITE_SYNTAX_ELEMENT_H_
@@ -21,10 +18,10 @@ public:
     // Function to be able to add a child to the vector.  No need for a removal
     // ability here because the tree will be built, then read, not deconstructed
     // or edited child by child.
-    virtual void Add(std::unique_ptr<SyntaxElement>);
+    void Add(std::unique_ptr<SyntaxElement>);
     
     // Function that gets the number of children in the composite.
-    std::size_t children_count() const;
+    std::size_t ChildrenCount() const;
     
     // Function that creates an iterator for the vector at the beginning
     std::vector<std::unique_ptr<SyntaxElement>>::const_iterator
@@ -36,6 +33,8 @@ public:
 
 
 private:
+    // Vector of syntax element unique pointers that contain the children of the
+    // composite syntax element.
     std::vector<std::unique_ptr<SyntaxElement>> children_;
 };
 
