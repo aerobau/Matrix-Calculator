@@ -45,9 +45,6 @@ private:
     // that have values before and after them that must be read in as well.
     std::stack<std::unique_ptr<Operation>> operations_;
     
-    // Constructs the abstract syntax tree from the tokens that were constructed
-    std::unique_ptr<SyntaxElement> MakeTree();
-    
     // Given a string that represents a literal matrix, constructs the matrix
     MathMatrix createMatrixFromString(std::string);
     

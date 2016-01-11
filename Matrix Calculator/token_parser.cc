@@ -14,10 +14,6 @@ TokenParser::TokenParser(std::vector<Token> tokens)
         : tokens_(tokens), token_iter_(tokens_.begin()) {}
 
 std::unique_ptr<SyntaxElement> TokenParser::Parse() {
-    return MakeTree();
-}
-
-std::unique_ptr<SyntaxElement> TokenParser::MakeTree() {
     token_iter_ = tokens_.begin();
     while (token_iter_ != tokens_.end()) {
         ReadToken();
@@ -37,7 +33,6 @@ std::unique_ptr<SyntaxElement> TokenParser::MakeTree() {
     std::unique_ptr<SyntaxElement> tree = std::move(values_.top());
     values_.pop();
     return tree;
-    
 }
 
 void TokenParser::ReadToken() {

@@ -17,11 +17,12 @@ class LineLexer {
 public:
     LineLexer(const std::string);
     std::vector<Token> Tokenize();
-    void LexWord(std::string::const_iterator, std::string::const_iterator);
     
 private:
     std::vector<Token> tokens_;
     const std::string line_;
+    
+    void LexWord(std::string::const_iterator, std::string::const_iterator);
 };
 
 #endif // LINE_LEXER_H_
