@@ -6,7 +6,7 @@
 #include "printer.h"
 
 Printer::Printer(std::ostream* stream)
-        : print_(""), valid_(false), stream_(stream) {}
+        : print_(""), valid_(true), stream_(stream) {}
 
 void Printer::Print() const {
     if (stream_) *stream_ << print_ << std::endl;

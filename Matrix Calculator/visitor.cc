@@ -34,6 +34,11 @@ void Visitor::VisitFunctionSyntaxElement(const FunctionSyntaxElement& element) {
             parameters[i] = results_[0];
         }
         results_ = func->Execute(parameters);
+        std::string data_print = "ans = ";
+        for (unsigned int i = 0; i < results_.size(); ++i) {
+            data_print += results_[i].ToString();
+        }
+        printer_.set_data(data_print);
     } else {
         throw std::logic_error("Function does not exist");
         return;
@@ -90,7 +95,11 @@ void Visitor::VisitOperation(const Operation& element) {
             throw std::logic_error(arg_err);  // lhs, rhs must be singular
         }
         results_ = { lhs[0].LeastSquares(rhs[0]) };
+    } else if (type == ";") {
+        printer_.set_valid(false);
     }
+    
+    printer_.set_data("ans = " + results_[0].ToString());
 }
 
 void Visitor::VisitVariableName(const VariableName& element) {
@@ -103,9 +112,12 @@ void Visitor::VisitVariableName(const VariableName& element) {
         } else {
             variable_delegate_.SetVariable(element.identifier(), results_[0]);
             assign_ = false;  // Unflag to prevent future errors
+            printer_.set_data(element.identifier() + " = " +
+                              results_[0].ToString());
         }
     } else if (variable_delegate_.GetVariable(element.identifier(), var)) {
         results_ = { var };
+        printer_.set_data(results_[0].ToString());
     } else {
         throw std::logic_error("Variable does not exist");
     }
@@ -120,10 +132,17 @@ void Visitor::VisitVariableList(const VariableList& element) {
             throw std::logic_error(err);
         } else {
             auto iter = element.VariablesBegin();
+            std::string print_variables = "[";
+            std::string print_results = "[";
             for (unsigned int i = 0; i < results_.size(); ++i) {
                 variable_delegate_.SetVariable((*iter),
                                                results_[i]);
+                print_variables += *iter + " , ";
+                print_results += results_[i].ToString() + " , ";
             }
+            print_variables += "]";
+            print_results += "]";
+            printer_.set_data(print_variables + " = " + print_results);
             assign_ = false;  // Unflag to prevent future errors
         }
     } else {
@@ -136,4 +155,5 @@ void Visitor::VisitVariableList(const VariableList& element) {
 void Visitor::VisitLiteral(const Literal& element) {
     // Simply assign the results to the literal value
     results_ = { element.value() };
+    printer_.set_data(results_[0].ToString());
 }

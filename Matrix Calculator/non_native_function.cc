@@ -8,7 +8,8 @@
 
 #include "non_native_function.h"
 #include "visitor.h"
-#include "line_parser.h"
+#include "line_lexer.h"
+#include "token_parser.h"
 #include "printer.h"
 
 NonNativeFunction::NonNativeFunction(std::vector<std::string> inputs,
@@ -96,7 +97,8 @@ void NonNativeFunction::set_function_body(std::string function_body) {
     std::string line;
     syntax_trees_.clear();
     while (getline(stream, line)) {
-        LineParser parser(line);
+        LineLexer lexer(line);
+        TokenParser parser(lexer.Tokenize());
         syntax_trees_.push_back(std::move(parser.Parse()));
     }
 }

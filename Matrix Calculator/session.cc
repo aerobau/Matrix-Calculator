@@ -7,7 +7,8 @@
 //
 
 #include "session.h"
-#include "line_parser.h"
+#include "line_lexer.h"
+#include "token_parser.h"
 #include "visitor.h"
 #include "native_function_definitions.h"
 #include "printer.h"
@@ -73,22 +74,19 @@ void Session::Run() {
         std::getline(std::cin, line_in);
         if (line_in == "exit") {
             done = true;  // Exit keyword submitted, flag to exit the session
-        } else if (GetVariable(line_in, print_var)) {
-            // Variable name entered by user, print out the variable
-            std::cout << line_in << " = " << std::endl
-                      << print_var.ToString() << std::endl;
         } else {
             // Parse the line into a SyntaxElement tree and visit the tree's
             // elements with a visitor to interpret.
             //
             // NOTE: The visitor holds a SessionDelegateInterface so that it can
             // edit the variables and functions in the session
-            LineParser parser(line_in);
+            LineLexer lexer(line_in);
+            TokenParser parser(lexer.Tokenize());
             std::unique_ptr<SyntaxElement> tree = parser.Parse();
             std::unique_ptr<Printer> printer(new Printer(&std::cout));
             Visitor v(*this, *this, *printer);
-            if (printer->valid()) printer->Print();
             tree->Accept(v);
+            if (printer->valid()) printer->Print();
         }
     }
 }
