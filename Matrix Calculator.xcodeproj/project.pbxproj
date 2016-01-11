@@ -37,13 +37,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D62A22461C3D9C1A00AF4F32 /* Syntax_Element_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Syntax_Element_Design.png; path = "Matrix Calculator/Syntax_Element_Design.png"; sourceTree = "<group>"; };
-		D62A22471C3D9C1A00AF4F32 /* Function_System_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Function_System_Design.png; path = "Matrix Calculator/Function_System_Design.png"; sourceTree = "<group>"; };
 		D62A22491C4342D500AF4F32 /* line_lexer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = line_lexer.cc; sourceTree = "<group>"; };
 		D62A224A1C4342D500AF4F32 /* line_lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_lexer.h; sourceTree = "<group>"; };
-		D62A224D1C4343EF00AF4F32 /* Session_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Session_Design.png; path = "Matrix Calculator/Session_Design.png"; sourceTree = "<group>"; };
 		D62A224E1C434A3F00AF4F32 /* token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
-		D62A224F1C43574C00AF4F32 /* Parsing_System_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Parsing_System_Design.png; sourceTree = "<group>"; };
+		D62A22511C43589F00AF4F32 /* Syntax_Element_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Syntax_Element_Design.png; sourceTree = "<group>"; };
+		D62A22521C43589F00AF4F32 /* Function_System_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Function_System_Design.png; sourceTree = "<group>"; };
+		D62A22531C43589F00AF4F32 /* Session_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Session_Design.png; sourceTree = "<group>"; };
+		D62A22541C43589F00AF4F32 /* Parsing_System_Design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Parsing_System_Design.png; sourceTree = "<group>"; };
 		D63B3E941C3C00C500B1B3C5 /* printer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printer.cc; sourceTree = "<group>"; };
 		D63B3E951C3C00C500B1B3C5 /* printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = printer.h; sourceTree = "<group>"; };
 		D69FA1551C33908F00903433 /* Matrix Calculator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Matrix Calculator"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,13 +91,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D62A22551C4358A500AF4F32 /* Design Schematics */ = {
+			isa = PBXGroup;
+			children = (
+				D62A22511C43589F00AF4F32 /* Syntax_Element_Design.png */,
+				D62A22521C43589F00AF4F32 /* Function_System_Design.png */,
+				D62A22531C43589F00AF4F32 /* Session_Design.png */,
+				D62A22541C43589F00AF4F32 /* Parsing_System_Design.png */,
+			);
+			name = "Design Schematics";
+			sourceTree = "<group>";
+		};
 		D69FA14C1C33908F00903433 = {
 			isa = PBXGroup;
 			children = (
-				D62A224F1C43574C00AF4F32 /* Parsing_System_Design.png */,
-				D62A22461C3D9C1A00AF4F32 /* Syntax_Element_Design.png */,
-				D62A22471C3D9C1A00AF4F32 /* Function_System_Design.png */,
-				D62A224D1C4343EF00AF4F32 /* Session_Design.png */,
 				D69FA1571C33908F00903433 /* Matrix Calculator */,
 				D69FA1561C33908F00903433 /* Products */,
 			);
@@ -114,6 +121,7 @@
 		D69FA1571C33908F00903433 /* Matrix Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				D62A22551C4358A500AF4F32 /* Design Schematics */,
 				D69FA16B1C33928300903433 /* main.cc */,
 				D69FA1881C3392CA00903433 /* Syntax tree classes */,
 				D69FA1891C33930300903433 /* Parsing */,
