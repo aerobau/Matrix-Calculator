@@ -4,6 +4,7 @@
 //  Created by Alexander Robau on 12/19/15.
 
 #include "math_matrix.h"
+#include <algorithm>
 
 MathMatrix::MathMatrix() : matrix_() {};
 

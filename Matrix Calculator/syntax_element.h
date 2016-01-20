@@ -8,6 +8,8 @@
 
 class Visitor;
 
+#include <memory>
+
 #include "math_matrix.h"
 
 //  |CLASS|  SyntaxElement  |CLASS|

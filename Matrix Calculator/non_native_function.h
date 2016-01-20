@@ -50,7 +50,7 @@ public:
     
     // Override of the execute function.  In this override, the syntax_trees_
     // vector is iterated over and each tree i interpretated by a visitor
-    std::vector<MathMatrix> Execute(std::vector<MathMatrix>) override;
+    std::vector<MathMatrix> Execute(const std::vector<MathMatrix>) override;
     
     // Returns the size of the inputs_ and outputs_ vectors
     int inputs_count() const override;
